@@ -15,7 +15,7 @@ import javax.persistence.EntityNotFoundException;
 @Transactional
 public class ItemImgService {
 
-    @Value("${itemImgLocation}")
+    @Value("${itemImgLocation}") //itemImgLocation에 있는걸 가져옴
     private String itemImgLocation;
 
     private final ItemImgRepository itemImgRepository;

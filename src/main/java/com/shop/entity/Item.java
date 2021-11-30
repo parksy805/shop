@@ -2,6 +2,8 @@ package com.shop.entity;
 
 
 import com.shop.constant.ItemSellStatus;
+import com.shop.dto.ItemFormDto;
+import com.shop.exception.OutOfStockException;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
@@ -35,7 +37,24 @@ public class Item extends BaseEntity {
 //    private LocalDateTime regTime; // 등록시간
 //    private LocalDateTime updateTime; // 수정 시간
 
+    public void updateItem(ItemFormDto itemFormDto){
+        this.itemNm = itemFormDto.getItemNm();
+        this.price = itemFormDto.getPrice();
+        this.stockNumber = itemFormDto.getStockNumber();
+        this.itemDetail = itemFormDto.getItemDetail();
+        this.itemSellStatus = itemFormDto.getItemSellStatus();
 
+
+    }
+
+
+    public void removeStock(int stockNumber){ //남은 재고수량 구하는 함수
+        int restStock = this.stockNumber - stockNumber;
+        if (restStock < 0 ) { //수량이 적으면
+            throw new OutOfStockException("상품의 재고가 부족합니다.(현재 재고 수량 : " + this.stockNumber + ")");
+        }
+        this.stockNumber = restStock; //남은 재고를 현재 재고로
+    }
 
 
 }
