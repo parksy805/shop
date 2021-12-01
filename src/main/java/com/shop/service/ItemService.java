@@ -39,9 +39,9 @@ public class ItemService {
             ItemImg itemImg = new ItemImg();
             itemImg.setItem(item);
             if (i == 0) { // i가 없으면 새로 추가하고 Y
-                itemImg.setRepImgYn("Y");
+                itemImg.setRepimgYn("Y");
             } else { //i가 있었으면 첫번째 사진이 아니니까 N으로
-                itemImg.setRepImgYn("N");
+                itemImg.setRepimgYn("N");
             }
             itemImgService.saveItemImg(itemImg, itemImgFileList.get(i));
         }
